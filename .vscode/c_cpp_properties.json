@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "name": "veloq",
+      "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+      "intelliSenseMode": "${default}",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}
