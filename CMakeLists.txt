@@ -11,7 +11,6 @@ add_executable(veloq
     src/cli.cpp
     src/runner.cpp
     src/utils.cpp
-    src/result.cpp
 )
 
 target_include_directories(veloq PRIVATE src)
