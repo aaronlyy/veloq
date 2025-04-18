@@ -1,5 +1,5 @@
 #pragma once
-#include "result.hpp"
+#include "run.hpp"
 #include <string>
 #include <chrono>
 
@@ -7,22 +7,12 @@ namespace veloq {
 
   class Runner {
     public:
-      explicit Runner(
-        std::chrono::milliseconds timeout = std::chrono::milliseconds(10000), // time till veloq stops the execution
-        bool verbose = false, // print command output live, could change runtime
-        bool live = false // show live output
-      );
+      explicit Runner(unsigned int runs_per_command = 5, bool live_output = false);
 
-      // run command once and save results
-      Result run_once(const std::string &command);
-
-      // run command many times and save results in a result collection
-      ResultCollection run_multi(const std::string &command, const int &times);
+      RunCollection run(const std::string &command);
 
     private:
-      std::chrono::milliseconds timeout_;
-      bool verbose_;
-      bool live_;
+      unsigned int runs_per_command_;
+      bool live_output_;
   };
-
 }
