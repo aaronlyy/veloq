@@ -27,18 +27,19 @@ Veloq is a simple benchmarking tool for command line interfaces.
   - [Building](#building)
   - [Usage](#usage)
   - [Examples](#examples)
+  - [The name](#the-name)
   - [Contribute](#contribute)
   - [License](#license)
   - [About](#about)
 
 ## Features
-- Time benchmarking
-- Silent running of commands
-- Benchmarking multiple commands at once
-- Saving command output to a file with timestamps
-- Replaying/Simulating a command run using captured output
-- Tracking system load while running commands
-- Displaying benchmarks as graphs
+- Benchmark any command
+- Compare multiple commands
+- Save command outputs to a file
+- Diff command outputs
+- Export reports as JSON & XML
+- Save command output with time offsets for replay
+- Replay a command run by using a replay file
 
 ## Installing
 Work in progress
@@ -51,6 +52,8 @@ Work in progress
 
 ## Examples
 Work in progress
+
+## The name
 
 ## Contribute
 Work in progress
