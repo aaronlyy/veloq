@@ -47,8 +47,8 @@ namespace veloq {
       RunCollection run_collection = runner.run(commands[0]);
 
       // show results
-      std::cout << "Full benchmark time: " << run_collection.runtime() << std::endl;
       std::cout << "Command: " << run_collection.command << std::endl;
+      std::cout << "Full benchmark time: " << run_collection.runtime() << std::endl;
       std::cout << "Average runtime: " << run_collection.average_runtime() << std::endl;
       std::cout << "Median runtime: " << run_collection.median_runtime() << std::endl;
     }
