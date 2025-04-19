@@ -4,7 +4,10 @@
       "name": "veloq",
       "compileCommands": "${workspaceFolder}/build/compile_commands.json",
       "intelliSenseMode": "${default}",
-      "cppStandard": "c++17"
+      "cppStandard": "c++17",
+      "includePath": [
+        "${workspaceFolder}/external"
+      ]
     }
   ],
   "version": 4
