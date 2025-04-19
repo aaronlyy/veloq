@@ -1,3 +1,10 @@
+
+// macro for unix/win support of popen
+#ifdef _WIN32
+  #define popen _popen
+  #define pclose _pclose
+#endif
+
 #include "runner.hpp"
 #include "run.hpp"
 #include "utils.hpp"
@@ -11,7 +18,7 @@ namespace veloq {
 
   RunCollection Runner::run(const std::string& command) {
 
-    // create new result collection to save runs
+    // create new run collection to save runs
     RunCollection run_collection;
     run_collection.command = command;
 
@@ -31,7 +38,7 @@ namespace veloq {
 
 
       // open process and get stream
-      FILE* pipe = _popen(command.c_str(), "r");
+      FILE* pipe = popen(command.c_str(), "r");
 
       // catch error of process cant be started
       if (!pipe) {
@@ -77,7 +84,7 @@ namespace veloq {
       }
 
       // close stream
-      _pclose(pipe);
+      pclose(pipe);
 
       // get finish time and set it in the struct
 
