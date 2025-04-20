@@ -6,7 +6,6 @@
 #endif
 
 #include "runner.hpp"
-#include "run.hpp"
 #include "utils.hpp"
 #include <chrono>
 #include <iostream>
@@ -14,6 +13,7 @@
 
 namespace veloq {
 
+  // class that executes commands & captures outputs and timings
   Runner::Runner(unsigned int runs_per_command, bool live_output) : runs_per_command_(runs_per_command), live_output_(live_output){}
 
   RunCollection Runner::run(const std::string& command) {
@@ -25,17 +25,11 @@ namespace veloq {
     for (unsigned int i = 0; i < runs_per_command_; i++) {
 
       // create object to capture run
-      Run run;
+      RunResult run;
 
       // set start stuff
       run.command = command;
       run.start_time = std::chrono::system_clock::now();
-
-
-      // start of actually running the command and capturing stuff
-      // later this part is going to be its own class and function
-      // but for now it just stays in here
-
 
       // open process and get stream
       FILE* pipe = popen(command.c_str(), "r");
@@ -92,7 +86,7 @@ namespace veloq {
       run.exit_code = 0; // change to actual exit code
 
       // push results of current run to run collection
-      run_collection.runs.push_back(run);
+      run_collection.run_results.push_back(run);
     }
 
     return run_collection;
