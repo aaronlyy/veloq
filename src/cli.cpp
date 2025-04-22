@@ -1,3 +1,7 @@
+#define BUILD_TIMESTAMP __DATE__ " " __TIME__
+#define VERSION "veloq 0.0.1"
+#define VERSION_INFO VERSION " (Build: " BUILD_TIMESTAMP ")"
+
 #include <iostream>
 #include <filesystem>
 
@@ -26,6 +30,7 @@ namespace veloq {
   
     app.add_flag("-d,--diff", show_diff, "Show diff of outputs"); // todo
     app.add_flag("-l,--live", live_output, "Show live output of commands");
+    app.set_version_flag("-v,--version", VERSION_INFO, "Shows version info");
     app.add_option("-r,--runs", runs_per_command, "How often the commands should be executed. Default is 5.");
     app.add_option("-s,--simulate", replay_path, "Path to replay file"); // todo
     app.add_option("-o,--out", output_path, "Output path"); // todo
