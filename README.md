@@ -10,7 +10,7 @@
 
 <!-- [Documentation](https://veloq.aaronlyy.dev/docs) -->
 
-Veloq is a simple benchmarking tool for command line interfaces.
+Veloq is a simple benchmarking & replay tool for command line interfaces.
 
 > [!WARNING]
 > This project is in early stages of development and can change anytime.
@@ -21,31 +21,49 @@ Veloq is a simple benchmarking tool for command line interfaces.
   - [Index](#index)
   - [Features](#features)
   - [Installing](#installing)
-    - Windows
-    - MacOS
-    - Unix
-  - [Building](#building)
   - [Usage](#usage)
+  - [Building](#building)
   - [Examples](#examples)
+  - [Testing](#testing)
   - [The name](#the-name)
   - [Contribute](#contribute)
   - [License](#license)
   - [About](#about)
 
 ## Features
-- Benchmark any command
-- Compare multiple commands
-- Save command outputs to a file
-- Diff command outputs
+- Benchmark commands
+- Capture commands for replay
+- Save output of commands to file
+- Diff output of commands for easy comparing
 - Export reports as JSON & XML
-- Save command output with time offsets for replay
-- Replay a command run by using a replay file
 
 ## Installing
 Work in progress
 
 ## Building
-Work in progress
+To build this project from source follow these steps.
+You need cmake & ninja to do this.
+
+1. Clone repository
+```bash
+git clone https://github.com/aaronlyy/veloq
+```
+2. Cd into project
+```bash
+cd veloq
+```
+3. Create build directory
+```bash
+mkdir build
+```
+4. Create build files
+```bash
+cmake -S . -B build -G "Ninja" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+```
+5. Build project
+```bash
+cmake --build build
+```
 
 ## Usage
 Work in progress
