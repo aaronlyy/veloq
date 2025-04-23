@@ -9,6 +9,8 @@
 
 #include "cli.hpp"
 #include "config.hpp"
+#include "controller.hpp"
+
 namespace veloq {
   int handle_cli(int argc, char** argv) {
 
@@ -107,6 +109,8 @@ namespace veloq {
     }
 
     // create controller object for handling the actual running of the awesome stuff
+    Controller controller(config);
+    controller.run();
 
     return 0;
   }
