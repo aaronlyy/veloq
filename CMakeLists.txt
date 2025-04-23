@@ -9,6 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_executable(veloq
     src/main.cpp
     src/cli.cpp
+    src/config.cpp
     src/runner.cpp
     src/utils.cpp
     src/benchmark.cpp

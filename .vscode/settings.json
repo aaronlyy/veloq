@@ -85,6 +85,12 @@
     "*.tcc": "cpp",
     "memory_resource": "cpp",
     "string_view": "cpp",
-    "text_encoding": "cpp"
+    "text_encoding": "cpp",
+    "any": "cpp",
+    "bitset": "cpp",
+    "cstdarg": "cpp",
+    "semaphore": "cpp",
+    "stack": "cpp",
+    "valarray": "cpp"
   }
 }
