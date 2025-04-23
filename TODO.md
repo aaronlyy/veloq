@@ -12,3 +12,5 @@
 - refactor: rewrite some stuff to be used as a library? maybe not sure if this is going to happen
 - feature: add --graph plus options to print graphs after results
 - feature: add progress bar to the top of the command run, only shown while running, sticky at the top (maybe --no-progress)
+- feature: allow input on running commands
+- feature: commands to edit config file
