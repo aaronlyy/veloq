@@ -11,6 +11,6 @@ namespace veloq {
       explicit Controller(const Config &config);
       void run();
     private:
-      Config config_;
+      const Config &config_;
   };
 }
