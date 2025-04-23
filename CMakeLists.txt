@@ -14,5 +14,8 @@ add_executable(veloq
     src/benchmark.cpp
 )
 
+add_subdirectory(external/yaml-cpp)
+
+target_link_libraries(veloq PRIVATE yaml-cpp)
 target_include_directories(veloq PRIVATE src)
 target_include_directories(veloq PRIVATE external/CLI11)
