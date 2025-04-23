@@ -5,7 +5,7 @@
 #include <iostream>
 #include <filesystem>
 
-#include "CLI11.hpp"
+#include <CLI/CLI.hpp>
 
 #include "cli.hpp"
 #include "config.hpp"
@@ -45,11 +45,10 @@ namespace veloq {
 
     app.add_option("-r,--runs", runs_per_command, "How often the commands should be executed. Default is 1.");
     app.add_option("-f,--filter", filter_regex, "Filter output, prints and saves line if regex expression is true"); // TODO
-    app.add_option("-h,--highlight", highlight_regex, "Regex string to highlight command output");
+    app.add_option("-m,--mark,--highlight", highlight_regex, "Regex string to highlight command output");
     app.add_option("-o,--out", output_path, "Output path"); // TODO: Path to save benchmark file
     app.add_option("-c,--config", config_path, "Run benchmark using pre-defined config"); // >TODO: Path to benchmark config
     app.add_option("-n, --name", name, "Name of benchmark. Default is 'veloq benchmark'");
-    app.add_option("-c,--config", config_path, "Path to veloq config file");
     
     CLI11_PARSE(app, argc, argv);
 
