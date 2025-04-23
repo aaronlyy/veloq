@@ -14,6 +14,7 @@ add_executable(veloq
     src/utils.cpp
     src/benchmark.cpp
     src/controller.cpp
+    src/executor.cpp
 )
 
 add_subdirectory(external/yaml-cpp)
