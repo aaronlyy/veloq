@@ -15,7 +15,9 @@ add_executable(veloq
 )
 
 add_subdirectory(external/yaml-cpp)
-
 target_link_libraries(veloq PRIVATE yaml-cpp)
+
+add_subdirectory(external/CLI11)
+target_link_libraries(veloq PRIVATE CLI11::CLI11)
+
 target_include_directories(veloq PRIVATE src)
-target_include_directories(veloq PRIVATE external/CLI11)
