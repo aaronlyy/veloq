@@ -10,6 +10,7 @@
 #include "cli.hpp"
 #include "config.hpp"
 #include "controller.hpp"
+#include "format/color.hpp"
 
 namespace veloq {
   int handle_cli(int argc, char** argv) {
