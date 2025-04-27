@@ -10,9 +10,6 @@ add_executable(veloq
     src/main.cpp
     src/cli.cpp
     src/config.cpp
-    src/runner.cpp
-    src/utils.cpp
-    src/benchmark.cpp
     src/controller.cpp
     src/executor.cpp
     src/format/color.cpp
