@@ -6,7 +6,6 @@
 #endif
 
 #include "runner.hpp"
-#include "utils.hpp"
 #include <chrono>
 #include <iostream>
 #include <cstdio> 
