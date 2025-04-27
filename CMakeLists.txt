@@ -13,6 +13,7 @@ add_executable(veloq
     src/controller.cpp
     src/executor.cpp
     src/format/color.cpp
+    src/timer.cpp
 )
 
 add_subdirectory(external/yaml-cpp)
