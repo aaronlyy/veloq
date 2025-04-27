@@ -1,71 +1,71 @@
+#ifdef _WIN32
+  #include <windows.h>
+#endif
+#include "color.hpp"
 #include <iostream>
-#include "format/color.hpp"
+
 
 namespace veloq::format {
-  std::string escape(const std::string &s) {
-  return ESCAPE + s + M;
+
+  std::string to_escape(TextStyle text_style) {
+    return std::string(ESCAPE) + std::to_string(static_cast<int>(text_style)) + M;
   }
 
-  std::string format_rgb(unsigned short r, unsigned short g, unsigned short b) {
-    return std::to_string(r) + ";" + std::to_string(g) + ";" + std::to_string(b);
+  std::string format_rgb(uint8_t r, uint8_t g, uint8_t b, bool foreground) {
+    return std::string(ESCAPE) + (foreground ? "38;2;" : "48;2;") +
+           std::to_string(r) + ";" + std::to_string(g) + ";" + std::to_string(b) + M;
   }
 
-  std::string set_reset() {
-    return RESET_E;
+  std::string reset() {
+    return std::string(RESET_E);
   }
 
-  std::string set_fg_rgb(unsigned short r, unsigned short g, unsigned short b){
-    return ESCAPE + FOREGROUND + format_rgb(r, g, b) + M;
+  std::string colorize(
+    const std::string& text,
+    std::optional<RGB> fg,
+    std::optional<RGB> bg,
+    const std::vector<TextStyle>& text_styles
+  ) {
+    std::string result;
+
+    for (const TextStyle &text_style : text_styles) {
+      result += to_escape(text_style);
+    }
+
+    if (fg) {
+      auto [r, g, b] = *fg;
+      result += format_rgb(r, g, b, true);
+    }
+
+    if (bg) {
+      auto [r, g, b] = *bg;
+      result += format_rgb(r, g, b, false);
+    }
+
+    result += text + reset();
+    return result;
   }
 
-  std::string set_bg_rgb(unsigned short r, unsigned short g, unsigned short b){
-    return ESCAPE + BACKGROUND + format_rgb(r, g, b) + M;
+  void print(
+    const std::string& text,
+    std::optional<RGB> fg,
+    std::optional<RGB> bg,
+    const std::vector<TextStyle>& text_styles
+  ) {
+    std::cout << colorize(text, fg, bg, text_styles) << std::endl;
   }
 
-  std::string set_bold() {
-    return escape(BOLD);
-  }
-
-  std::string set_italic() {
-    return escape(ITALIC);
-  }
-
-  std::string set_light() {
-    return escape(LIGHT);
-  }
-
-  std::string set_underline() {
-    return escape(UNDERLINE);
-  }
-
-  // print string with given rgb values as foreground
-  void print_fg_rgb(const std::string &s, unsigned short r, unsigned short g, unsigned short b) {
-    std::cout << set_fg_rgb(r, g, b) << s << RESET_E;
-  }
-
-  // print string with given rgb values as background
-  void print_bg_rgb(const std::string &s, unsigned short r, unsigned short g, unsigned short b) {
-    std::cout << set_bg_rgb(r, g, b) << s << RESET_E;
-  }
-
-  // print text with given foreground and background rgb values
-  void print_rgb(const std::string &s, unsigned short fr, unsigned short fg, unsigned short fb, unsigned short br, unsigned bg, unsigned bb) {
-    std::cout << set_bg_rgb(fr, fg, fb) << set_fg_rgb(br, bg, bb) << s << RESET_E;
-  }
-
-  void print_bold(const std::string &s) {
-    std::cout << set_bold() << s << RESET_E;
-  }
-
-  void print_italic(const std::string &s) {
-    std::cout << set_italic() << s << RESET_E;
-  }
-
-  void print_light(const std::string &s) {
-    std::cout << set_light() << s << RESET_E;
-  }
-
-  void print_underline(const std::string &s) {
-    std::cout << set_underline() << s << RESET_E;
+  // https://superuser.com/questions/413073/windows-console-with-ansi-colors-handling
+  void enable_virtual_terminal() {
+    #ifdef _WIN32
+      HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+      if (hOut == INVALID_HANDLE_VALUE) return;
+  
+      DWORD dwMode = 0;
+      if (!GetConsoleMode(hOut, &dwMode)) return;
+  
+      dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+      SetConsoleMode(hOut, dwMode);
+    #endif
   }
 }

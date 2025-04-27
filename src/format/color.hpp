@@ -1,221 +1,48 @@
 #pragma once
 #include <string>
+#include <tuple>
+#include <vector>
+#include <optional>
+#include <cstdint>
 
 namespace veloq::format {
-  // Constants with a trailing E are escaped
 
-  // ANSI escape. Needs to be at the beginning of an ANSI sequence.
-  const std::string ESCAPE = "\033[";
+  using RGB = std::tuple<uint8_t, uint8_t, uint8_t>;
 
-  // Needs to be at the end of every ANSI sequence.
-  const std::string M = "m";
+  constexpr const char* ESCAPE = "\033[";
+  constexpr const char* M = "m";
+  constexpr const char* RESET_E = "\033[0m";
 
-  // Reset everything back to normal
-  const std::string RESET = "0";
-  const std::string RESET_E = ESCAPE + RESET + M;
+  enum class TextStyle {
+    Reset = 0,
+    Bold = 1,
+    Light = 2,
+    Italic = 3,
+    Underline = 4,
+    BlinkSlow = 5,
+    BlinkRapid = 6,
+    Invert = 7,
+    Hide = 8,
+    Crossed = 9
+  };
 
-  const std::string FOREGROUND = "38;2;";
-  const std::string BACKGROUND = "48;2;";
+  std::string to_escape(TextStyle text_style);
+  std::string format_rgb(uint8_t r, uint8_t g, uint8_t b, bool foreground = true);
+  std::string reset();
 
-  const std::string BOLD = "1";
-  const std::string BOLD_E = ESCAPE + BOLD + M;
+  std::string colorize(
+    const std::string& text,
+    std::optional<RGB> fg = {},
+    std::optional<RGB> bg = {},
+    const std::vector<TextStyle>& text_styles = {}
+  );
 
-  const std::string LIGHT = "2";
-  const std::string LIGHT_E = ESCAPE + LIGHT + M;
+  void print(
+    const std::string& text,
+    std::optional<RGB> fg = {},
+    std::optional<RGB> bg = {},
+    const std::vector<TextStyle>& text_styles = {}
+  );
 
-  const std::string ITALIC = "3";
-  const std::string ITALIC_E = ESCAPE + ITALIC + M;
-
-  const std::string UNDERLINE = "4";
-  const std::string UNDERLINE_E = ESCAPE + UNDERLINE + M;
-
-  const std::string BLINK_SLOW = "5";
-  const std::string BLINK_SLOW_E = ESCAPE + BLINK_SLOW + M;
-
-  const std::string BLINK_RAPID = "6";
-  const std::string BLINK_RAPID_E = ESCAPE + BLINK_RAPID + M;
-
-  const std::string INVERT = "7";
-  const std::string INVERT_E = ESCAPE + INVERT + M;
-
-  const std::string HIDE = "8";
-  const std::string HIDE_E = ESCAPE + HIDE + M;
-
-  const std::string CROSSES = "9";
-  const std::string CROSSES_E = ESCAPE + CROSSES + M;
-
-
-    /**
-   * Wraps given string between kolor::ESCAPE and kolor:M.
-   * @param s
-   * @return
-   */
-  std::string escape(const std::string &s);
-
-  /**
-   * Formats RGB values to an ANSI formatted string.
-   * @param r
-   * @param g
-   * @param b
-   * @return std::string
-   */
-  std::string format_rgb(unsigned short r, unsigned short g, unsigned short b);
-
-  /**
-   * Reset everything to normal.
-   * @return
-   */
-  std::string set_reset();
-
-  /**
-   * Changes the foreground color for all following characters.
-   * @param r
-   * @param g
-   * @param b
-   * @return std::string
-   */
-  std::string set_fg_rgb(unsigned short r, unsigned short g, unsigned short b);
-
-  /**
-   * Changes the background color for all following characters.
-   * @param r
-   * @param g
-   * @param b
-   * @return std::string
-   */
-  std::string set_bg_rgb(unsigned short r, unsigned short g, unsigned short b);
-
-  /**
-   * Turns all following characters italic.
-   * @return std::string
-   */
-  std::string set_italic();
-
-  /**
-   * Turns all following characters bold.
-   * @return std::string
-   */
-  std::string set_bold();
-
-  /**
-   * Turns all following characters light.
-   * @return std::string
-   */
-  std::string set_light();
-
-  /**
-   * Underlines all following characters.
-   * @return std::string
-   */
-  std::string set_underline();
-
-  // to be implemented...
-  std::string set_blink_slow();
-  std::string set_blink_rapid();
-  std::string set_invert();
-  std::string set_hide();
-  std::string set_crosses();
-
-  /**
-   * Returns given string with ANSI escaped sequence to change the foreground color of all characters.
-   * @param r
-   * @param g
-   * @param b
-   * @return std::string
-   */
-  std::string fg_rgb(unsigned short r, unsigned short g, unsigned short b);
-
-  /**
-   * Returns given string with ANSI escaped sequence to change the background color of all characters.
-   * @param r
-   * @param g
-   * @param b
-   * @return
-   */
-  std::string bg_rgb(unsigned short r, unsigned short g, unsigned short b);
-
-  /**
-   * Returns given string with ANSI escaped sequence to change the foreground and background color of all characters.
-   * @return
-   */
-  std::string fg_bg_rgb();
-
-  /**
-   * Returns given string with ANSI escaped sequence to turn characters italic.
-   * @return
-   */
-  std::string italic();
-
-  /**
-   * Returns given string with ANSI escaped sequence to turn characters bold.
-   * @return
-   */
-  std::string bold();
-
-  /**
-   * Returns given string with ANSI escaped sequence to turn characters light.
-   * @return
-   */
-  std::string light();
-
-  /**
-   * Returns given string with ANSI escaped sequence to turn characters underlined.
-   * @return
-   */
-  std::string underline();
-
-  /**
-   * Prints given string with given RGB values as foreground color.
-   * @param s
-   * @param r
-   * @param g
-   * @param b
-   */
-  void print_fg_rgb(const std::string &s, unsigned short r, unsigned short g, unsigned short b);
-
-  /**
-   * Prints given string with given RGB values as background color.
-   * @param s
-   * @param r
-   * @param g
-   * @param b
-   */
-  void print_bg_rgb(const std::string &s, unsigned short r, unsigned short g, unsigned short b);
-
-  /**
-   * Prints given string with given RGB values as foreground and background color.
-   * @param s
-   * @param rf
-   * @param gf
-   * @param bf
-   * @param rb
-   * @param gb
-   * @param bb
-   */
-  void print_rgb(const std::string &s, unsigned short rf, unsigned short gf, unsigned short bf, unsigned short rb, unsigned gb, unsigned bb);
-
-  /**
-   * Prints given string italic.
-   * @param s
-   */
-  void print_italic(const std::string &s);
-
-  /**
-   * Prints given string bold.
-   * @param s
-   */
-  void print_bold(const std::string &s);
-
-  /**
-   * Prints given string light.
-   * @param s
-   */
-  void print_light(const std::string &s);
-
-  /**
-   * Prints given string underlined.
-   * @param s
-   */
-  void print_underline(const std::string &s);
-
+  void enable_virtual_terminal();
 }
