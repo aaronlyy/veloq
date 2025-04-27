@@ -91,6 +91,13 @@
     "cstdarg": "cpp",
     "semaphore": "cpp",
     "stack": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "condition_variable": "cpp",
+    "future": "cpp",
+    "mutex": "cpp",
+    "executor": "cpp",
+    "io_context": "cpp",
+    "netfwd": "cpp",
+    "timer": "cpp"
   }
 }
