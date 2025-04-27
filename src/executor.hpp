@@ -1,8 +1,11 @@
 #pragma once
 
+#include "config.hpp"
+#include "timer.hpp"
+
 #include <string>
 #include <chrono>
-#include "config.hpp"
+
 
 // this class is used to execute commands, print command ouput, check for regex hits on output, trigger other commands
 namespace veloq {
@@ -22,9 +25,8 @@ namespace veloq {
 
   struct ExecutionData {
     std::string command;
-    std::chrono::system_clock::time_point start_time;
-    std::chrono::system_clock::time_point end_time;
     ExecutionOutput execution_output;
+    Timings timings;
   };
 
   class Executor {
