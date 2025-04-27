@@ -18,8 +18,7 @@ namespace veloq {
       std::cout << "[veloq] Controller.run() was called\n";
     }
 
-    Executor executor(config_);
-    executor.execute_command("dir");
+    Executor executor{config_};
 
     // setup regex stuff
 

@@ -110,7 +110,7 @@ namespace veloq {
     }
 
     // create controller object for handling the actual running of the awesome stuff
-    Controller controller(config);
+    Controller controller{config};
     controller.run();
 
     return 0;
