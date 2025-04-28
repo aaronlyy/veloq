@@ -56,7 +56,7 @@ namespace veloq {
     timings_.stop_time = std::chrono::system_clock::now();
     double seconds = static_cast<double>(stop_time_.tv_sec - start_time_.tv_sec);
     double nanoseconds = static_cast<double>(stop_time_.tv_nsec - start_time_.tv_nsec) / 1e9;
-    timings_.elapsed_time = seconds + nanoseconds;
+    timings_.elapsed_seconds = seconds + nanoseconds;
   }
 
   Timings Timer::timings() const {
