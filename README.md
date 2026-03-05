@@ -1,4 +1,4 @@
-# veloq: Monitor & benchmark anything!
+# veloq: Monitoring & benchmarking framework for your terminal 
 
 ```
            __         
@@ -13,7 +13,7 @@
 
 
 ## Index
-- veloq: Monitor & benchmark everything!
+- veloq: Monitoring & benchmarking framework for your terminal
   - [Index](#index)
   - [Features](#features)
   - [Installing](#installing)
