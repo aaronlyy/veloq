@@ -7,7 +7,7 @@ import (
   "github.com/expr-lang/expr"
   )
 
-func main() {
+func run_expr() {
   program, err := expr.Compile(`2 + 2`)
   if err != nil {
       panic(err)

@@ -8,7 +8,7 @@ import (
 	"github.com/wneessen/go-mail"
 )
 
-func main() {
+func send_mail() {
 	// create new mail
 	message := mail.NewMsg()
 

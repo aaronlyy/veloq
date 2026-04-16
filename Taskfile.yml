@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+tasks:
+  default:
+    desc: The default task
+    cmds:
+      - echo "hey!"
+    silent: true
+    
+  build:
+    desc: Builds the Daemon and the CLI
+    cmds:
+      - go build -o veloq cmd/veloq/main.go 
+      - go build -o veloqd cmd/veloqd/main.go

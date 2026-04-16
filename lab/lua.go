@@ -16,7 +16,7 @@ type PluginResult struct {
 	Message string
 }
 
-func main() {
+func run_lua() {
 	L := lua.NewState()
 	defer L.Close()
 
