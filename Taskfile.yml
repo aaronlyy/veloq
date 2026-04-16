@@ -12,5 +12,5 @@ tasks:
   build:
     desc: Builds the Daemon and the CLI
     cmds:
-      - go build -o veloq cmd/veloq/main.go 
-      - go build -o veloqd cmd/veloqd/main.go
+      - go build ./cmd/veloq
+      - go build ./cmd/veloqd
