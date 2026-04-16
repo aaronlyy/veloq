@@ -3,5 +3,6 @@
 *.out
 *.app
 
-./veloq
-./veloqd
+/veloq
+/veloqd
+*.exe
